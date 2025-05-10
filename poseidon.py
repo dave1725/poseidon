@@ -219,29 +219,27 @@ def generate_proof(circuit_name):
     else:
         print("[*] Please fill in the circuit inputs in json format in input.json")
         time.sleep(3)
-        ch = input("Filled in ? (Y|N): ").lower()
-        if(ch == 'y'):
-            print("[*] Generating witness...")
-            try:
-                subprocess.run(f"node {circuit_name}_js/generate_witness.js {circuit_name}_js/{circuit_name}.wasm input.json witness.wtns", 
-                               shell=True, check=True)
-                print("[+] Witness generated successfully...")
-            except subprocess.CalledProcessError as e:
-                print(f"[-] Exiting system - Failed due to: {e}")
-                exit(1)
-                
-            try:
-                print("[*] Proof generation started...")
-                time.sleep(3)
-                subprocess.run(f"snarkjs groth16 prove {circuit_name}_final.zkey witness.wtns proof.json public.json", 
-                               shell=True, check=True)
-                print("[+] proof generated successfully...")
-                
-            except subprocess.CalledProcessError as e:
-                print("[-] failed: exiting system")
-                exit(1)
-        else:
-            print("[!] Please fill in the inputs.json")
+        
+        print("[*] Generating witness...")
+        try:
+            subprocess.run(f"node {circuit_name}_js/generate_witness.js {circuit_name}_js/{circuit_name}.wasm input.json witness.wtns", 
+                            shell=True, check=True)
+            print("[+] Witness generated successfully...")
+        except subprocess.CalledProcessError as e:
+            print(f"[-] Exiting system - Failed due to: {e}")
+            exit(1)
+            
+        try:
+            print("[*] Proof generation started...")
+            time.sleep(3)
+            subprocess.run(f"snarkjs groth16 prove {circuit_name}_final.zkey witness.wtns proof.json public.json", 
+                            shell=True, check=True)
+            print("[+] proof generated successfully...")
+            
+        except subprocess.CalledProcessError as e:
+            print("[-] failed: exiting system")
+            exit(1)
+      
 
 def verify_proof():
     file_path = Path("./proof.json")
@@ -275,6 +273,7 @@ def main():
     parser = argparse.ArgumentParser(description="zk-SNARK automation tool")
 
     parser.add_argument("--circuit-setup", action="store_true", help="setup the circuit environment to kickstart development")
+    parser.add_argument("--yes", action="store_true", help="skip confirmation prompt")
     parser.add_argument("--compile-only", metavar="circuit_name", type=str, help="Only compile the circuit (advanced users)")
     parser.add_argument("--init-setup", metavar="circuit_name",type=str, help="Compile, run trusted setup ceremony, setup proving key - all ready for zkProof generation (beginners)")
     parser.add_argument("--prove", metavar="circuit_name", type=str, help="to generate zkProof with the circuit compiled and trusted setup")
@@ -292,8 +291,15 @@ def main():
     elif args.circuit_setup:
         setup_circuit_env()
     elif args.prove:
+        
         circuit_name = args.prove
-        generate_proof(circuit_name)
+        if not args.yes:
+            ch = input("Filled in ? (Y|N): ").lower()
+            if ch != 'y':
+                print("Please fill input.json and try again.")
+        else:   
+            generate_proof(circuit_name)
+            
     elif args.verify:
         verify_proof()
     else:

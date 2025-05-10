@@ -50,7 +50,7 @@ jobs:
 
     - name: Run --prove
       run: |
-        python3 poseidon.py --prove circuit1
+        python3 poseidon.py --prove circuit1 --yes
 
     - name: Run --verify
       run: |
