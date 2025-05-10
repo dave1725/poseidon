@@ -1,0 +1,58 @@
+name: CI - Poseidon zkTool
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-flags:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+
+    - name: Install Dependencies
+      run: |
+        pip install pyfiglet
+        npm install -g snarkjs
+        cargo install --git https://github.com/iden3/circom
+
+    - name: Run --circuit-setup
+      run: |
+        python3 poseidon.py --circuit-setup
+
+    - name: Run --compile-only
+      run: |
+        python3 poseidon.py --compile-only circuit1
+
+    - name: Run --init-setup
+      run: |
+        python3 poseidon.py --init-setup circuit1
+
+    - name: Run --prove
+      run: |
+        echo '{"inputs":[1,2]}' > input.json
+        python3 poseidon.py --prove circuit1
+
+    - name: Run --verify
+      run: |
+        python3 poseidon.py --verify
