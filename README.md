@@ -26,12 +26,13 @@ Full documentation of Poseidon can be found [here](https://daves-organization-7.
 
 ## 🚀 Features
 
-- Easy environment setup for Circom + snarkjs
-- Circuit boilerplate generation
-- Compile, setup, and proof generation in one go
-- CLI flags for fine-grained control
-- Verification-ready setup
-- JSON outputs for easy integration
+- Simplified environment setup for Circom + snarkjs
+- Auto-generate circuit boilerplate to kickstart development
+- Compile circuit, perform trusted setup, and configure proving keys in one step
+- Flexible CLI flags for precise control over actions
+- Effortless proof generation and verification with a single command
+- Setup ready for verification (no extra configuration needed)
+- Outputs in JSON format for easy integration with other systems
 
 ## Installation
 Clone the repository and use the package manager [pip](https://pip.pypa.io/en/stable/) to install required dependencies.
