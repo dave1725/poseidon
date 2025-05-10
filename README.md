@@ -6,6 +6,8 @@ Full documentation of Poseidon can be found [here](https://daves-organization-7.
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/dave1725/poseidon?style=social)
 
+![Build Status](https://github.com/dave1725/poseidon/actions/workflows/ci.yml/badge.svg)
+
 ![GitHub](https://img.shields.io/github/license/dave1725/poseidon)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/dave1725/poseidon)
