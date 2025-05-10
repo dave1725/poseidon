@@ -1,4 +1,5 @@
 # Poseidon
+![Screenshot 2025-05-10 202048](https://github.com/user-attachments/assets/1330ff5a-775b-40d2-94ba-37baa0de0119)
 
 Poseidon is a powerful CLI and utility toolkit for zk-SNARK circuit development using Circom. It streamlines everything from environment setup, circuit compilation, trusted setup, proof generation, and verification.
 
