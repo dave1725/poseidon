@@ -4,6 +4,23 @@ Poseidon is a powerful CLI and utility toolkit for zk-SNARK circuit development 
 
 Full documentation of Poseidon can be found [here](https://daves-organization-7.gitbook.io/poseidon).
 
+![GitHub Repo stars](https://img.shields.io/github/stars/dave1725/poseidon?style=social)
+
+![GitHub](https://img.shields.io/github/license/dave1725/poseidon)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/dave1725/poseidon)
+
+![Python Version](https://img.shields.io/badge/python-3.10+-blue)
+
+![Circom](https://img.shields.io/badge/Circom-supported-brightgreen)
+
+![zk-SNARK](https://img.shields.io/badge/zk--SNARK-ready-purple)
+
+![Status](https://img.shields.io/badge/status-beta-yellow)
+
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+
+
 ## 🚀 Features
 
 - Easy environment setup for Circom + snarkjs
